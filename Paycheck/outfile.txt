@@ -1,0 +1,5 @@
+Enter quit to exit.
+Wage: 12.6
+Hours: 35
+Paycheck: 441.00
+Wage: quit
