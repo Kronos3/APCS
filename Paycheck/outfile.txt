@@ -1,5 +1,8 @@
 Enter quit to exit.
-Wage: 12.6
-Hours: 35
-Paycheck: 441.00
+Wage: 55.988
+Hours: 67.3
+Paycheck: $4532.23
+Wage: 2.453456789
+Hours: 50
+Paycheck: $134.94
 Wage: quit

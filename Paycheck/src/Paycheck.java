@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 /**
  * Employee with a wage and hourly work
  * @author Andrei Tumbar
@@ -5,27 +7,27 @@
  */
 public class Paycheck 
 {
-	private double wage;
-	private double hours;
-	private final int overtimeHours = 40;
-	private final double overtimeWage = 1.5;
+	private BigDecimal wage;
+	private BigDecimal hours;
+	private final int OVERTIME_HOURS = 40;
+	private final double OVERTIME_WAGE = 1.5;
 	
 	/**
 	 * Creates a new Paycheck with wage and hours
 	 * @param wage The new wage on the paycheck
 	 * @param hours The hours worked
 	 */
-	public Paycheck(double wage, double hours)
+	public Paycheck(String wage, String hours)
 	{
-		this.wage = wage;
-		this.hours = hours;
+		this.wage = new BigDecimal(wage);
+		this.hours = new BigDecimal(hours);
 	}
 	
 	/**
 	 * Returns the wage of paycheck
 	 * @return wage of paycheck
 	 */
-	public double getWage()
+	public BigDecimal getWage()
 	{
 		return this.wage;
 	}
@@ -34,7 +36,7 @@ public class Paycheck
 	 * Returns the hours of paycheck
 	 * @return hours of paycheck
 	 */
-	public double getHours()
+	public BigDecimal getHours()
 	{
 		return this.hours;
 	}
@@ -43,17 +45,17 @@ public class Paycheck
 	 * Returns the computed pay
 	 * @return The computed pay 
 	 */
-	public double getPay()
+	public BigDecimal getPay()
 	{
-		double totalPay = 0;
-		if(this.hours > 40)
+		BigDecimal totalPay = BigDecimal.ZERO;
+		if(this.hours.compareTo(new BigDecimal(OVERTIME_HOURS)) == 1)
 		{
-			totalPay += (this.hours - this.overtimeHours) * (this.wage * overtimeWage);
-			totalPay += this.overtimeHours * this.wage;
+			totalPay = totalPay.add(this.hours.subtract(new BigDecimal(this.OVERTIME_HOURS)).multiply(this.wage).multiply(new BigDecimal(OVERTIME_WAGE)));
+			totalPay = totalPay.add(new BigDecimal (this.OVERTIME_HOURS).multiply(this.wage));
 		}
 		else
 		{
-			totalPay += this.hours * this.wage;
+			totalPay = totalPay.add(this.hours.multiply(this.wage));
 		}
 		return totalPay;
 	}
