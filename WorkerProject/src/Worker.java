@@ -35,6 +35,15 @@ public class Worker
 	}
 	
 	/**
+	 * Returns the pay based on the number of hours
+	 * @param hours The number of hours worked
+	 * @return The pay for number of hours
+	*/
+	public double computePay (int hours) {
+		return hours * getSalaryRate();
+	}
+	
+	/**
 	 * Creates a string from the Worker instances
 	 * @return String created from the Worker instance
 	 */
