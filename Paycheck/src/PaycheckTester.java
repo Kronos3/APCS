@@ -30,11 +30,8 @@ public class PaycheckTester
 				print("Hours: ");
 				String hourStr = getInput(sc);
 				
-				double wage = Double.parseDouble(wageStr);
-				double hours = Double.parseDouble(hourStr);
-				
-				Paycheck p = new Paycheck(wage, hours);
-				println(String.format("Paycheck: %.2f", p.getPay()));
+				Paycheck p = new Paycheck(wageStr, hourStr);
+				println(String.format("Paycheck: $%.2f", p.getPay().doubleValue()));
 			}
 		}
 		
