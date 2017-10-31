@@ -68,7 +68,7 @@ public abstract class BankAccount
      */
     public String toString ()
     {
-    	return String.format("Type: %s\nbalance: %s\n", 
+    	return String.format("Type: %s\nbalance: $%.2f\n", 
     			this.getClass().getSimpleName(),
     			getBalance());
     }

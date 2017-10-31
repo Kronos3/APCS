@@ -16,6 +16,10 @@ public class SavingsAccount extends BankAccount
         this.minimumBalance = getBalance();
     }
     
+    /**
+     * Returns the minimumBalance
+     * @return the minimumBalance
+     */
     public double getMinimumBalance()
     {
     	return this.minimumBalance;
@@ -27,11 +31,11 @@ public class SavingsAccount extends BankAccount
      */
     public void deposit(double amount)
     {
-    	if (this.minimumBalance == 0) 
-    	{
-    		this.minimumBalance = amount;
-    	}
     	super.deposit(amount);
+    	if (this.minimumBalance == 0 && this.getBalance() != 0) 
+    	{
+    		this.minimumBalance = this.getBalance();
+    	}
     }
     
     /**
@@ -41,7 +45,7 @@ public class SavingsAccount extends BankAccount
     public void withdraw(double amount)
     {
         super.withdraw(amount);
-        if (this.minimumBalance < this.getBalance()) 
+        if (this.minimumBalance > this.getBalance()) 
         {
         	this.minimumBalance = this.getBalance();
         }
@@ -61,6 +65,6 @@ public class SavingsAccount extends BankAccount
      */
     public String toString ()
     {
-    	return String.format("%sinterestRate: %s\nminimumBalance: %s\n", super.toString(), this.interestRate, this.minimumBalance);
+    	return String.format("%sinterestRate: $%.2f\nminimumBalance: $%.2f\n", super.toString(), this.interestRate, this.minimumBalance);
     }
 }

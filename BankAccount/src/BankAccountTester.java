@@ -7,6 +7,10 @@ public class BankAccountTester
 		test(new TimeDepositAccount(3.5, 3));
 	}
 	
+	/**
+	 * Test the BankAccount given account
+	 * @param account the account to test
+	 */
 	public static void test (BankAccount account)
 	{
 		account.deposit(25);

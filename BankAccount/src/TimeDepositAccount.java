@@ -1,9 +1,17 @@
+/**
+ * An account you keep money in for a certain number of months
+ */
 
 public class TimeDepositAccount extends SavingsAccount
 {
 	private int months;
 	public final double WITHDRAW_PENALTY = 3.5;
 	
+	/**
+	 * Constructs a new TimeDepositAccount given rate and mounts
+	 * @param rate the interest rate on the account
+	 * @param months the months until maturity
+	 */
 	TimeDepositAccount(double rate, int months)
 	{
 		super(rate);
@@ -46,6 +54,6 @@ public class TimeDepositAccount extends SavingsAccount
      */
     public String toString ()
     {
-    	return String.format("%sinterestRate: %s\n", super.toString(), this.months);
+    	return String.format("%smonths: %s\n", super.toString(), this.months);
     }
 }
