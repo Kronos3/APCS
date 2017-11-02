@@ -4,6 +4,11 @@
  *
  */
 public abstract class Message {
+	
+	/**
+	 * Returns Hello World in a language
+	 * @return Hello World in a language
+	 */
 	public abstract String hello_world();
 	
 	/**
