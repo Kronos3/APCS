@@ -15,6 +15,24 @@ public class Fraction implements Comparable<Fraction>
 	}
 	
 	/**
+	 * Returns the objects denominator
+	 * @return the objects denominator
+	 */
+	public int getDenominator ()
+	{
+		return denominator;
+	}
+	
+	/**
+	 * Returns the objects numerator
+	 * @return the objects numerator
+	 */
+	public int getNumerator ()
+	{
+		return numerator;
+	}
+	
+	/**
 	 * Reduces the Fraction to lowest terms
 	 * @return returns a new Fraction in lowest terms
 	 */
@@ -50,17 +68,10 @@ public class Fraction implements Comparable<Fraction>
 	 */
 	public int compareTo (Fraction tocompare)
 	{
-		double a = getDecimal ();
-		double b = tocompare.getDecimal();
-		if (a == b) {
-			return 0;
-		}
-		else if (a < b)
-		{
-			return 1;
-		}
+		int numer_1 = tocompare.getDenominator () * this.getNumerator ();
+		int numer_2 = this.getDenominator () * tocompare.getNumerator ();
 		
-		return -1;
+		return new Integer (numer_1).compareTo (new Integer (numer_2));
 	}
 	
 	/**
@@ -78,6 +89,6 @@ public class Fraction implements Comparable<Fraction>
 	 */
 	public String toString ()
 	{
-		return String.format("%s / %s", numerator, denominator);
+		return String.format ("%s / %s", numerator, denominator);
 	}
 }
