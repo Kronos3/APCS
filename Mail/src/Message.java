@@ -81,6 +81,24 @@ public class Message
         return this.message.length();
     }
     
+    /**
+     * Compares the toCompare message to this
+     * @param toCompare the message to compare to
+     * @return 0 if they are equal and 1 if they are not
+     */
+    public int compareTo (Message toCompare)		
+    {		
+		if (!toCompare.getMessageText().equals(this.getMessageText())		
+				|| !toCompare.getSubject().equals(this.getSubject()))		
+		{		
+			return 1;		
+		}		
+		return 0;		
+    }
+    
+    /**
+     * Converts message to its string representation
+     */
     public String toString()
     {
     	return String.format("[%s] (%s): %s",

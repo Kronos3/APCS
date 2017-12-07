@@ -25,6 +25,11 @@ public class User
 		return new String(hashSHA256 (inPass)).equals(new String (this.passwd));
 	}
 	
+	public void recieveMessage (Message msg)
+	{
+		this.unreadMail.addMessage(msg);
+	}
+	
 	public byte[] hashSHA256 (String toHash)
 	{
 		MessageDigest md;

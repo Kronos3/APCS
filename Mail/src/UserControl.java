@@ -17,6 +17,7 @@ public class UserControl
 	public static User loggedIn;
 	public static int MAX_PASSWORD_TRIES = 3;
 	public static boolean loopStop;
+	public static Scanner s;
 	
 	public static void main (String[] args)
 	{
@@ -42,14 +43,65 @@ public class UserControl
 				() -> printMailbox (argumentStack[0]),
 				"mailbox to read");
 		newCommand ("help", () -> printHelp());
+		newCommand ("message",
+				() -> sendMessage (argumentStack),
+				"recipients...");
 		
-		Scanner s = new Scanner(System.in);
+		s = new Scanner(System.in);
 		while (!loopStop)
 		{
 			System.out.print("> ");
 			handleCommand (s.nextLine().split(" "));
 		}
 		s.close ();
+	}
+	
+	public static void sendMessage (String... recipients)
+	{
+		if (loggedIn == null)
+		{
+			System.out.println("You need to be logged to send a message!");
+			return;
+		}
+		
+		User[] userRecip = verifyUsers (recipients);
+		if (userRecip.length != 0 && userRecip[0] == null)
+		{
+			return;
+		}
+		User mainRecip = users.get(recipients[0]);
+		
+		System.out.print("Subject: ");
+		String subject = s.nextLine();
+		
+		System.out.print("Message: ");
+		String message = s.nextLine(); 
+		
+		for (int i = 0; i != recipients.length; i++)
+		{
+			users.get(recipients[i]).recieveMessage(
+					new Message (loggedIn, mainRecip, subject, message, userRecip));
+		}
+	}
+	
+	public static User[] verifyUsers (String[] userList)
+	{
+		User[] out = new User[userList.length - 1];
+		for (int i = 0; i != userList.length; i++)
+		{
+			User target = users.get(userList[i]);
+			if (target == null)
+			{
+				System.out.printf("Address '%s' was not found!\n", userList[i]);
+				out[0] = null;
+				return out;
+			}
+			if (i != 0)
+			{
+				out[i - 1] = target;
+			}
+		}
+		return out;
 	}
 	
 	public static int getMailboxType (String str)
