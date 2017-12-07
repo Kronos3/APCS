@@ -32,7 +32,8 @@ public class Time {
 	{
 		int[] dateMeta = {
 				Calendar.DAY_OF_WEEK, 
-				Calendar.MONTH, 
+				Calendar.MONTH,
+				Calendar.DAY_OF_MONTH,
 				Calendar.HOUR,
 				Calendar.MINUTE,
 				Calendar.SECOND
@@ -44,7 +45,9 @@ public class Time {
 		metaCalc.add(index -> formatToSize.apply((Time.months[index.intValue()])));
 		metaCalc.add(day -> day.toString());
 		metaCalc.add(month -> month.toString());
-		metaCalc.add(second -> second.toString());	
+		metaCalc.add(second -> second.toString());
+		
+		assert dateMeta.length == metaCalc.size();
 		
 		return String.format("%s %s %s, %s:%s:%s", 
 				metaCalc.get(0).apply(dateMeta[0]),
