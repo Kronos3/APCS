@@ -3,6 +3,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.function.Function;
 
+/**
+ * Holds metadata for a given timestamp
+ */
 public class Time {
 	private long time;
 	private Calendar cal;

@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 /**
  * Simulates a mailbox
- * @author Nicholas.Wight
- * @version 2017.12.05
  */
 public class Mailbox
 {

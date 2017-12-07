@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 /**
  * Controls the users and allows for logging in/out
- * @author samuel.catterall
- * @version 12/5/17
  */
 public class UserControl
 {

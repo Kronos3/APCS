@@ -1,10 +1,7 @@
 import java.util.ArrayList;
 
 /**
- * The Message class stores a message for the DMail program.
- *
- * @author Aidan Foley
- * @version 12/5/2017
+ * The Message class stores a message.
  */
 public class Message
 {
@@ -16,12 +13,12 @@ public class Message
     public static int MAX_SMALL_MESSAGE_LEN = 16;
     
     /**
-     * 
-     * @param sender
-     * @param recipient
-     * @param subject
-     * @param message
-     * @param CC
+     * Create a new message given a sender, recipient, subject and message
+     * @param sender the sender of the message
+     * @param recipient the primary recipient
+     * @param subject the subject of the message
+     * @param message the message text
+     * @param CC optional other recipients
      */
     public Message(User sender, User recipient, String subject, String message, User... CC)
     {
