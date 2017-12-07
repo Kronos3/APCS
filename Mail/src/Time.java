@@ -18,19 +18,29 @@ public class Time {
 			"Monday", "Tuesday", "Wednesday", "Thursday",
 			"Friday", "Saturday", "Sunday"
 	};
-	
+
+	/**
+	* Constructs timestamp with the current system time
+	*/
 	public Time ()
 	{
 		this (System.currentTimeMillis());
 	}
 	
+	/**
+	* Constructs timestamp with a new calendar given time
+	* @param time the time in milliseconds
+	*/
 	public Time (long time)
 	{
 		this.time = time;
 		this.cal = Calendar.getInstance();
 		cal.setTime(new Date (this.time));
 	}
-	
+
+	/**
+	* String representation of the timestamp
+	*/
 	public String toString ()
 	{
 		int[] dateMeta = {
