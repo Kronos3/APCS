@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @author Aidan Foley
  * @version 12/5/2017
  */
-public class Message implements Comparable<Message>
+public class Message
 {
     private User sender;
     private ArrayList<User> recipients;
@@ -82,16 +82,6 @@ public class Message implements Comparable<Message>
     public int getLength()
     {
         return this.message.length();
-    }
-    
-    public int compareTo (Message toCompare)
-    {
-    	if (!toCompare.getMessageText().equals(this.getMessageText())
-    			|| !toCompare.getSubject().equals(this.getSubject()))
-    	{
-    		return 1;
-    	}
-    	return 0;
     }
     
     public String toString()
