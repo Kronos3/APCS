@@ -7,25 +7,23 @@ import java.util.ArrayList;
 public class Mailbox
 {
     private ArrayList<Message> messages;
-    private User parent;
     
     /**
      * Creates a new mailbox
      */
-    public Mailbox(User parent)
+    public Mailbox()
     {
-    	this.parent = parent;
         messages = new ArrayList<Message>();
     }
     
     /**
      * Prints out a list of all the messages in this Mailbox
      */
-    public void checkMessages()
+    public void printMessages()
     {
-        for(int i = 0; i < this.messages.size(); i++)
+        for(int i = this.messages.size() - 1; i >= 0; i--)
         {
-            //read.add(0,unread.remove(i));
+            System.out.println(this.messages.get(i));
         }
     }
     

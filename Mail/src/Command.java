@@ -5,7 +5,7 @@ public class Command
 	private String[] args;
 	private Runnable fcall;
 	
-	Command (String commandName, Runnable fcall, String... args)
+	public Command (String commandName, Runnable fcall, String... args)
 	{
 		this.commandName = commandName;
 		this.fcall = fcall;
@@ -34,5 +34,16 @@ public class Command
 	public int getArgc ()
 	{
 		return this.args.length;
+	}
+	
+	public String toString ()
+	{
+		String out = new String();
+		out += String.format("%s ", this.commandName);
+		for (int i = 0; i != this.args.length; i++)
+		{
+			out += String.format("<%s> ", this.args[i]);
+		}
+		return out;
 	}
 }

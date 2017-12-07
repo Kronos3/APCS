@@ -15,25 +15,14 @@ public class User
 		this.name = name;
 		this.address = emailAddress;
 		this.passwd = hashSHA256 (passwd);
+		
+		this.readMail = new Mailbox ();
+		this.unreadMail = new Mailbox ();
 	}
 	
 	public boolean checkPassword (String inPass) 
 	{
-		byte[] toCheck = hashSHA256 (inPass);
-		
-		if (toCheck == null) 
-		{
-			return false;
-		}
-		
-		for (int i = 0; i != toCheck.length; i++)
-		{
-			if (this.passwd[i] != toCheck[i])
-			{
-				return false;
-			}
-		}
-		return true;
+		return new String(hashSHA256 (inPass)).equals(new String (this.passwd));
 	}
 	
 	public byte[] hashSHA256 (String toHash)
@@ -71,5 +60,10 @@ public class User
 	public Mailbox getUnread ()
 	{
 		return this.unreadMail;
+	}
+	
+	public String toString ()
+	{
+		return this.getAddress();
 	}
 }

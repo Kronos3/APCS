@@ -12,6 +12,8 @@ public class Message implements Comparable<Message>
     private ArrayList<User> recipients;
     private String subject;
     private String message;
+    private Time timestamp;
+    public static int MAX_SMALL_MESSAGE_LEN = 16;
     
     /**
      * 
@@ -34,6 +36,7 @@ public class Message implements Comparable<Message>
         
         this.subject = subject;
         this.message = message;
+        this.timestamp = new Time ();
     }
     
     /**
@@ -93,8 +96,12 @@ public class Message implements Comparable<Message>
     
     public String toString()
     {
-        return "Sender: " + sender + ", Recipient: " + this.recipients.get(0) + 
-            ", Subject: " + subject + ", Message: " + message;
+    	return String.format("[%s] (%s): %s",
+    			this.timestamp,
+        		this.getSubject(),
+        		this.getMessageText().substring(0, MAX_SMALL_MESSAGE_LEN) 
+        			+ (this.getLength() <= MAX_SMALL_MESSAGE_LEN ? "" : "...")
+        		);
     }
     
 }
