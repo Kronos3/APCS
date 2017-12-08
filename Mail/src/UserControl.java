@@ -170,8 +170,8 @@ public class UserControl
 			return;
 		
 		Mailbox target;
-		if ((target = getMailBox))
-		
+		if ((target = getMailbox(toRead)) == null)
+			return;
 		
 		target.printMessages();
 	}
