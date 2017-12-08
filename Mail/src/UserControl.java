@@ -48,6 +48,9 @@ public class UserControl
 				"recipients...");
 		
 		s = new Scanner(System.in);
+		users.put ("deppe@apcs", new User ("Mr.Deppe", "password", "deppe@apcs"));
+		
+		
 		while (!loopStop)
 		{
 			System.out.print("> ");

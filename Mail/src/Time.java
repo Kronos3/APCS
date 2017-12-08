@@ -7,16 +7,15 @@ import java.util.function.Function;
  * Holds metadata for a given timestamp
  */
 public class Time {
-	private long time;
-	private Calendar cal;
+	private long timestamp;
 	private static String[] months = {
 			"January", "February", "March", "April", 
 			"May", "June", "July", "August", "September", 
 			"October", "November", "December"
 	};
 	private static String[] days = {
-			"Monday", "Tuesday", "Wednesday", "Thursday",
-			"Friday", "Saturday", "Sunday"
+			"Sunday", "Monday", "Tuesday", "Wednesday", 
+			"Thursday", "Friday", "Saturday"
 	};
 
 	/**
@@ -24,18 +23,7 @@ public class Time {
 	*/
 	public Time ()
 	{
-		this (System.currentTimeMillis());
-	}
-	
-	/**
-	* Constructs timestamp with a new calendar given time
-	* @param time the time in milliseconds
-	*/
-	public Time (long time)
-	{
-		this.time = time;
-		this.cal = Calendar.getInstance();
-		cal.setTime(new Date (this.time));
+		this.timestamp = System.currentTimeMillis();
 	}
 
 	/**
@@ -43,6 +31,8 @@ public class Time {
 	*/
 	public String toString ()
 	{
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date (this.timestamp));
 		int[] dateMeta = {
 				Calendar.DAY_OF_WEEK, 
 				Calendar.MONTH,
@@ -54,11 +44,12 @@ public class Time {
 		
 		Function<String, String> formatToSize = in -> in.substring(0, 3);
 		ArrayList<Function<Integer, String>> metaCalc = new ArrayList<Function<Integer, String>>();
-		metaCalc.add(index -> formatToSize.apply((Time.days[index.intValue()])));
-		metaCalc.add(index -> formatToSize.apply((Time.months[index.intValue()])));
-		metaCalc.add(day -> day.toString());
-		metaCalc.add(month -> month.toString());
-		metaCalc.add(second -> second.toString());
+		metaCalc.add(index -> formatToSize.apply((Time.days[cal.get(index) - 1])));
+		metaCalc.add(index -> formatToSize.apply((Time.months[cal.get(index)])));
+		metaCalc.add(day -> new Integer(cal.get(day)).toString());
+		metaCalc.add(hour -> new Integer(cal.get(hour)).toString());
+		metaCalc.add(minute -> new Integer(cal.get(minute)).toString());
+		metaCalc.add(second -> new Integer(cal.get(second)).toString());
 		
 		assert dateMeta.length == metaCalc.size();
 		

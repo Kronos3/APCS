@@ -104,7 +104,7 @@ public class Message
     	return String.format("[%s] (%s): %s",
     			this.timestamp,
         		this.getSubject(),
-        		this.getMessageText().substring(0, MAX_SMALL_MESSAGE_LEN) 
+        		this.getMessageText().substring(0, Math.min(MAX_SMALL_MESSAGE_LEN, this.getLength())) 
         			+ (this.getLength() <= MAX_SMALL_MESSAGE_LEN ? "" : "...")
         		);
     }
