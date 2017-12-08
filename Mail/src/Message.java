@@ -97,6 +97,22 @@ public class Message
     }
     
     /**
+     * Returns a string with the names of the recipients that are CCed
+     * @return a string with the names of the recipients that are CCed
+     */
+    public String getCC ()
+    {
+    	String out = new String();
+    	for (int i = 1; i != this.recipients.size(); i++)
+    	{
+    		out += this.recipients.get(i);
+    		if (i + 1 != this.recipients.size());
+    			out += ", ";
+    	}
+    	return out;
+    }
+    
+    /**
      * Converts message to its string representation
      */
     public String toString()

@@ -26,7 +26,21 @@ public class UserControl
 		users = new HashMap<String, User> ();
 		commandList = new ArrayList<String>();
 		loopStop = false;
+		initCommands ();
+		s = new Scanner(System.in);
+		users.put ("deppe@apcs", new User ("Mr.Deppe", "password", "deppe@apcs"));
 		
+		
+		while (!loopStop)
+		{
+			System.out.print("> ");
+			handleCommand (s.nextLine().split(" "));
+		}
+		s.close ();
+	}
+	
+	public static void initCommands ()
+	{
 		newCommand ("addUser",
 				() -> users.put (argumentStack[2], new User (argumentStack[0], argumentStack[1], argumentStack[2])),
 				"name", "password", "address");
@@ -46,19 +60,38 @@ public class UserControl
 		newCommand ("message",
 				() -> sendMessage (argumentStack),
 				"recipients...");
-		
-		s = new Scanner(System.in);
-		users.put ("deppe@apcs", new User ("Mr.Deppe", "password", "deppe@apcs"));
-		
-		
-		while (!loopStop)
-		{
-			System.out.print("> ");
-			handleCommand (s.nextLine().split(" "));
-		}
-		s.close ();
+		newCommand ("read",
+				() -> readMessage (argumentStack[0], argumentStack[1]),
+				"mailbox to read from", "message number");
 	}
 	
+	/**
+	 * Read a message given the mailbox name and the message number
+	 * @param mailbox the name of the mailbox
+	 * @param number the message number
+	 */
+	public static void readMessage (String mailbox, String number) 
+	{
+		if (!checkLoggedIn())
+			return;
+		
+		Mailbox mailboxPtr;
+		if ((mailboxPtr = getMailbox (mailbox)) == null)
+			return;
+		
+		Message target = mailboxPtr.getMessage(Integer.parseInt(number));
+		System.out.printf("From: %s\nTo: %s\nCC: %s\nSubject: %s\n\n%s\n", 
+				target.getSender(),
+				target.getRecipient(),
+				target.getCC(),
+				target.getSubject(),
+				target.getMessageText());
+	}
+	
+	/**
+	 * Sends a message to the specified recipient addresses
+	 * @param recipients a list of the recipients
+	 */
 	public static void sendMessage (String... recipients)
 	{
 		if (loggedIn == null)
@@ -87,6 +120,11 @@ public class UserControl
 		}
 	}
 	
+	/**
+	 * Verify that all the users in the UserList exist and return a list of them
+	 * @param userList a list of addresses to verify
+	 * @return an array of users that correspond to the userList
+	 */
 	public static User[] verifyUsers (String[] userList)
 	{
 		User[] out = new User[userList.length - 1];
@@ -107,45 +145,41 @@ public class UserControl
 		return out;
 	}
 	
-	public static int getMailboxType (String str)
+	/**
+	 * Returns a pointer to the target mailbox given str
+	 * @param str "read" or "unread"
+	 * @return the pointer to the mailbox or null if not found
+	 */
+	public static Mailbox getMailbox (String str)
 	{
 		if (str.equals("unread"))
-		{
-			return 1 << 0;
-		}
+			return loggedIn.getUnread();
 		else if (str.equals("read"))
-		{
-			return 1 << 1;
-		}
-		return 0 << 0;
+			return loggedIn.getRead();
+		System.out.printf ("Mailbox '%s' not found!\n", str);
+		return null;
 	}
 	
+	/**
+	* Prints the contents of the specified mailbox to read
+	* @param the mailbox to read
+	*/
 	public static void printMailbox (String toRead)
 	{
 		if (!checkLoggedIn())
-		{
 			return;
-		}
 		
-		Mailbox target = null;
-		int mailboxType = getMailboxType (toRead);
-		if (mailboxType == 0)
-		{
-			System.out.printf ("Mailbox '%s' not found!\n", toRead);
-			return;
-		}
-		else if (mailboxType == 1)
-		{
-			target = loggedIn.getUnread();
-		}
-		else if (mailboxType == 2)
-		{
-			target = loggedIn.getRead();
-		}
+		Mailbox target;
+		if ((target = getMailBox))
+		
 		
 		target.printMessages();
 	}
-	
+
+	/**
+	* Handles user input and running commands
+	* @param args the user input
+	*/
 	public static void handleCommand (String... args)
 	{
 		Command target = commands.get(args[0]);
@@ -165,7 +199,13 @@ public class UserControl
 		target.getCall().run();
 		Arrays.fill(argumentStack, null);
 	}
-	
+
+	/**
+	* Logs in to a user with a specified mail address and handles password attempts,
+	* returns whether a user was logged into
+	* @param the user’s mail address
+	* @return the user’s login status
+	*/
 	public static boolean login (String address)
 	{
 		User target;
@@ -189,15 +229,17 @@ public class UserControl
 		}
 		
 		if (tries == MAX_PASSWORD_TRIES)
-		{
 			return false;
-		}
 		
 		loggedIn = target;
 		
 		return true;
 	}
 	
+	/**
+	 * Check if the user is logged
+	 * @return true if the user is logged in and false not logged in
+	 */
 	public static boolean checkLoggedIn ()
 	{
 		if (loggedIn == null)
@@ -208,12 +250,21 @@ public class UserControl
 		return true;
 	}
 	
+	/**
+	* Adds a new command to the list of available commands
+	* @param name the command’s name
+	* @param call the command’s call for execution
+	* @param args the command’s arguments 
+	*/
 	public static void newCommand (String name, Runnable call, String... args)
 	{
 		commands.put (name, new Command (name, call, args));
 		commandList.add(name);
 	}
 	
+	/**
+	* Prints the current user and a list of the available commands
+	*/
 	public static void printHelp ()
 	{
 		System.out.printf("Current user: %s\n", loggedIn);
