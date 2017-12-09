@@ -10,6 +10,12 @@ public class User
 	private Mailbox readMail;
 	private Mailbox unreadMail;
 	
+	/**
+	 * Creates a new user with name name, password passwd, and address   emailAddress.
+	 * @param name The user's name.
+	 * @param passwd The user's password.
+	 * @param emailAddress The user's address.
+	 */
 	User (String name, String passwd, String emailAddress)
 	{
 		this.name = name;
@@ -20,6 +26,10 @@ public class User
 		this.unreadMail = new Mailbox ();
 	}
 	
+	/**
+	 * Returns true if inPass is equal to passwd and false if it is not.
+	 * @return Whether inPass is equal to passwd.
+	 */
 	public boolean checkPassword (String inPass) 
 	{
 		return new String(hashSHA256 (inPass)).equals(new String (this.passwd));
@@ -30,6 +40,11 @@ public class User
 		this.unreadMail.addMessage(msg);
 	}
 	
+	/**
+	 * Takes a string and outputs the string hashed with SHA256.
+	 * @param toHash The string to hash.
+	 * @return The hashed string.
+	 */
 	public byte[] hashSHA256 (String toHash)
 	{
 		MessageDigest md;
@@ -47,6 +62,10 @@ public class User
 		return md.digest();
 	}
 	
+	/**
+	 * Adds msg to the unreadMail Mailbox.
+	 * @param msg The message to add to unrealMail.
+	 */
 	public String getAddress ()
 	{
 		return this.address;
