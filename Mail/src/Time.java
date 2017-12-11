@@ -46,10 +46,10 @@ public class Time {
 		ArrayList<Function<Integer, String>> metaCalc = new ArrayList<Function<Integer, String>>();
 		metaCalc.add(index -> formatToSize.apply((Time.days[cal.get(index) - 1])));
 		metaCalc.add(index -> formatToSize.apply((Time.months[cal.get(index)])));
-		metaCalc.add(day -> new Integer(cal.get(day)).toString());
-		metaCalc.add(hour -> new Integer(cal.get(hour)).toString());
-		metaCalc.add(minute -> new Integer(cal.get(minute)).toString());
-		metaCalc.add(second -> new Integer(cal.get(second)).toString());
+		metaCalc.add(day -> Integer.valueOf(cal.get(day)).toString());
+		metaCalc.add(hour -> Integer.valueOf(cal.get(hour)).toString());
+		metaCalc.add(minute -> Integer.valueOf(cal.get(minute)).toString());
+		metaCalc.add(second -> Integer.valueOf(cal.get(second)).toString());
 		
 		assert dateMeta.length == metaCalc.size();
 		
