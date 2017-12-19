@@ -30,7 +30,6 @@ public class UserControl
 		s = new Scanner(System.in);
 		users.put ("deppe@apcs", new User ("Mr.Deppe", "password", "deppe@apcs"));
 		
-		
 		while (!loopStop)
 		{
 			System.out.print("> ");
@@ -39,6 +38,9 @@ public class UserControl
 		s.close ();
 	}
 	
+	/**
+	 * Creates the default set of commands for the Mail system
+	 */
 	public static void initCommands ()
 	{
 		newCommand ("addUser",
@@ -80,12 +82,22 @@ public class UserControl
 			return;
 		
 		Message target = mailboxPtr.getMessage(Integer.parseInt(number));
+		if (target == null)
+		{
+			System.out.printf("Message number '%s' could not be found!\n", number);
+			return;
+		}
+		
 		System.out.printf("From: %s\nTo: %s\nCC: %s\nSubject: %s\n\n%s\n", 
 				target.getSender(),
 				target.getRecipient(),
 				target.getCC(),
 				target.getSubject(),
 				target.getMessageText());
+		if (mailboxPtr == mailboxPtr.getParent().getUnread())
+		{
+			mailboxPtr.moveMessage(mailboxPtr.getParent().getRead(), target);
+		}
 	}
 	
 	/**

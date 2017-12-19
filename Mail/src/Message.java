@@ -102,14 +102,14 @@ public class Message
      */
     public String getCC ()
     {
-    	String out = new String();
-    	for (int i = 1; i != this.recipients.size(); i++)
-    	{
-    		out += this.recipients.get(i);
-    		if (i + 1 != this.recipients.size());
-    			out += ", ";
-    	}
-    	return out;
+	    	String out = new String();
+	    	for (int i = 1; i != this.recipients.size(); i++)
+	    	{
+	    		out += this.recipients.get(i);
+	    		if (i + 1 != this.recipients.size());
+	    			out += ", ";
+	    	}
+	    	return out;
     }
     
     /**
@@ -117,7 +117,7 @@ public class Message
      */
     public String toString()
     {
-    	return String.format("[%s] (%s): %s",
+    		return String.format("[%s] (%s): %s",
     			this.timestamp,
         		this.getSubject(),
         		this.getMessageText().substring(0, Math.min(MAX_SMALL_MESSAGE_LEN, this.getLength())) 

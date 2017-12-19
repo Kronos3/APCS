@@ -22,8 +22,8 @@ public class User
 		this.address = emailAddress;
 		this.passwd = hashSHA256 (passwd);
 		
-		this.readMail = new Mailbox ();
-		this.unreadMail = new Mailbox ();
+		this.readMail = new Mailbox (this);
+		this.unreadMail = new Mailbox (this);
 	}
 	
 	/**
@@ -35,6 +35,10 @@ public class User
 		return new String(hashSHA256 (inPass)).equals(new String (this.passwd));
 	}
 	
+	/**
+	 * Adds an incoming message to to unread mailbox
+	 * @param msg the new incoming message
+	 */
 	public void recieveMessage (Message msg)
 	{
 		this.unreadMail.addMessage(msg);
@@ -71,21 +75,37 @@ public class User
 		return this.address;
 	}
 	
+	/**
+	 * Returns the name of the User
+	 * @return the name of the User
+	 */
 	public String getName ()
 	{
 		return this.name;
 	}
 	
+	/**
+	 * Returns the read Mailbox of the User
+	 * @return the read Mailbox of the User
+	 */
 	public Mailbox getRead ()
 	{
 		return this.readMail;
 	}
 	
+	/**
+	 * Returns the unread Mailbox of the User
+	 * @return the unread Mailbox of the User
+	 */
 	public Mailbox getUnread ()
 	{
 		return this.unreadMail;
 	}
 	
+	/**
+	 * Returns the string representation of the User
+	 * @return the string representation of the User
+	 */
 	public String toString ()
 	{
 		return this.getAddress();

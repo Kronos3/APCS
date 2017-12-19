@@ -4,14 +4,16 @@ import java.util.ArrayList;
  */
 public class Mailbox
 {
+	private User parent;
     private ArrayList<Message> messages;
     
     /**
      * Creates a new mailbox
      */
-    public Mailbox()
+    public Mailbox(User parent)
     {
         messages = new ArrayList<Message>();
+        this.parent = parent;
     }
     
     /**
@@ -23,6 +25,15 @@ public class Mailbox
         {
             System.out.println(String.format ("[%d] ", this.messages.size() - (i + 1)) + this.messages.get(i));
         }
+    }
+    
+    /**
+     * Returns the parent User of this Mailbox
+     * @return the parent User of this Mailbox
+     */
+    public User getParent()
+    {
+    		return this.parent;
     }
     
     /**
@@ -41,7 +52,9 @@ public class Mailbox
      */
     public Message getMessage (int number)
     {
-    	return this.messages.get(this.messages.size () - (number + 1));
+    		if (number >= this.messages.size())
+    			return null;
+    		return this.messages.get(this.messages.size () - (number + 1));
     }
     
     /**
@@ -52,15 +65,15 @@ public class Mailbox
      */
     public boolean moveMessage(Mailbox dest, Message msg)
     {
-    	for (int i = 0; i != dest.messages.size(); i++)
-    	{
-    		if (this.messages.get(i) == msg)
-    		{
-    			this.messages.remove(i);
-    			dest.addMessage(msg);
-    			return true;
-    		}
-    	}
-    	return false;
+	    	for (int i = 0; i != this.messages.size(); i++)
+	    	{
+	    		if (this.messages.get(i) == msg)
+	    		{
+	    			this.messages.remove(i);
+	    			dest.addMessage(msg);
+	    			return true;
+	    		}
+	    	}
+	    	return false;
     }
 }
