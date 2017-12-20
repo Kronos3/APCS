@@ -1,6 +1,10 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Handles all operations that have to do with any given User
+ * This includes sending/recieving messages as well as login/logout operations
+ */
 public class User 
 {
 	private String address;
@@ -11,7 +15,7 @@ public class User
 	private Mailbox unreadMail;
 	
 	/**
-	 * Creates a new user with name name, password passwd, and address   emailAddress.
+	 * Creates a new user with name name, password passwd, and address emailAddress.
 	 * @param name The user's name.
 	 * @param passwd The user's password.
 	 * @param emailAddress The user's address.

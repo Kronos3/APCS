@@ -1,4 +1,8 @@
 
+/**
+ * Calls functions and passes arguments along to lower level function calls
+ * Holds metadata about the arguments required
+ */
 public class Command 
 {
 	private String commandName;
@@ -20,7 +24,7 @@ public class Command
 	
 	/**
 	 * Prints what you did wrong when creating command
-       @param argc the amount of args inputed from the commandline
+	 * @param argc the amount of args inputed from the commandline
 	 */
 	public void printHelp (int argc)
 	{
@@ -38,7 +42,7 @@ public class Command
 	
 	/**
 	 * Returns the pointer to the command's function call
-       @return the pointer to the command's function call
+	 * @return the pointer to the command's function call
 	 */
 	public Runnable getCall ()
 	{
@@ -47,7 +51,7 @@ public class Command
 	
 	/**
 	 * Returns the count of arguments that this command takes
-     * @return the count of arguments that this command takes
+	 * @return the count of arguments that this command takes
 	 */
 	public int getArgc ()
 	{
@@ -56,7 +60,7 @@ public class Command
 	
 	/**
 	 * Returns the string representation of the command
-     * @return the string representation of the command
+	 * @return the string representation of the command
 	 */
 	public String toString ()
 	{
