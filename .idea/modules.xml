@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Elevens_Activity10/Elevens_Activity10.iml" filepath="$PROJECT_DIR$/Elevens_Activity10/Elevens_Activity10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Elevens_Activity11/Elevens_Activity11.iml" filepath="$PROJECT_DIR$/Elevens_Activity11/Elevens_Activity11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mail/Mail.iml" filepath="$PROJECT_DIR$/Mail/Mail.iml" />
+    </modules>
+  </component>
+</project>
