@@ -83,8 +83,8 @@ public class Matrix
     }
     
     /**
-     * Returns a string repesentation of the matrix and the determinant as well
-     * @return a string repesentation of the matrix and the determinant as well
+     * Returns a string representation of the matrix and the determinant as well
+     * @return a string representation of the matrix and the determinant as well
      */
     public String toString ()
     {

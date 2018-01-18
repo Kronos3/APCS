@@ -43,7 +43,7 @@ public class MatrixTester
                 + "area of tri2d: %s\n"
                 + "\n\nMatrix tri3d: %s"
                 + "area of tri3d: %s\n"
-                + "\n\nscalar mutiply 3 * b2: %s"
+                + "\n\nscalar multiply 3 * b2: %s"
                 + "\n\nb1 + b1: %s"
                 + "\n\nb1 - (2 * b1): %s"
                 + "\n\nb1 * b3: %s"
@@ -53,9 +53,9 @@ public class MatrixTester
                 test_7x7,
                 test_3x4,
                 triangle_test2d,
-                MatrixMath.getTriagleArea2d(triangle_test2d),
+                MatrixMath.getTriangleArea2d(triangle_test2d),
                 triangle_test3d,
-                MatrixMath.getTriagleArea3d(triangle_test3d),
+                MatrixMath.getTriangleArea3d(triangle_test3d),
                 MatrixMath.scalarMultiply(test_7x7, 3),
                 MatrixMath.add(test_3x3, test_3x3),
                 MatrixMath.subtract(test_3x3, MatrixMath.scalarMultiply(test_3x3, 2)),

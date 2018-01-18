@@ -22,7 +22,7 @@ public class MatrixMath
     /**
      * Subtract to Matrices
      * @param mat1 the first matrix
-     * @param mat2 the matrix to substract from the first matrix
+     * @param mat2 the matrix to subtract from the first matrix
      * @return the difference of the matrices
      */
     public static Matrix subtract (Matrix mat1, Matrix mat2)
@@ -89,11 +89,11 @@ public class MatrixMath
     }
     
     /**
-     * Get the area of a triangle using Bramagupta's formula
+     * Get the area of a triangle using Brahmagupta's formula
      * @param mat triangle represented given a 2x3 Matrix of 3 points on a 2d plane
      * @return the area of a triangle
      */
-    public static double getTriagleArea2d (Matrix mat)
+    public static double getTriangleArea2d (Matrix mat)
     {
         BiFunction<int[], int[], Double> distance = (p1, p2) -> {
             return Math.sqrt(Math.pow (p2[0] - p1[0], 2) + Math.pow (p2[1] - p1[1], 2));
@@ -110,11 +110,11 @@ public class MatrixMath
         return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
     /**
-     * Get the area of a triangle using Bramagupta's formula in 3d dimensions
+     * Get the area of a triangle using Brahmagupta's formula in 3d dimensions
      * @param mat triangle represented given a 3x3 Matrix of 3 points
      * @return the area of a triangle
      */
-    public static double getTriagleArea3d (Matrix mat)
+    public static double getTriangleArea3d (Matrix mat)
     {
         BiFunction<int[], int[], Double> distance = (p1, p2) -> {
             return Math.sqrt(Math.pow (p2[0] - p1[0], 2) + Math.pow (p2[1] - p1[1], 2) + Math.pow (p2[2] - p1[2], 2));
