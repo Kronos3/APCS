@@ -21,33 +21,47 @@ public class MatrixTester
                 {4, 31, 2, 5},
                 {31, 7, 6, 2}
         };
-        int[][] tri = {
+        int[][] tri2d = {
                 {0, 0},
                 {3, 0},
                 {0, 4}
         };
+        int[][] tri3d = {
+                {0, 0, 3},
+                {3, 0, 1},
+                {0, 4, 5}
+        };
         Matrix test_3x3 = new Matrix (b1);
         Matrix test_7x7 = new Matrix(b2);
         Matrix test_3x4 = new Matrix (b3);
-        Matrix triangle_test = new Matrix (tri);
+        Matrix triangle_test2d = new Matrix (tri2d);
+        Matrix triangle_test3d = new Matrix (tri3d);
         System.out.printf ("Matrix b1: %s"
                 + "\n\nMatrix b2: %s"
                 + "\n\nMatrix b3: %s"
-                + "\n\nMatrix tri: %s"
-                + "area of tri: %s\n"
+                + "\n\nMatrix tri2d: %s"
+                + "area of tri2d: %s\n"
+                + "\n\nMatrix tri3d: %s"
+                + "area of tri3d: %s\n"
                 + "\n\nscalar mutiply 3 * b2: %s"
                 + "\n\nb1 + b1: %s"
                 + "\n\nb1 - (2 * b1): %s"
-                + "\n\nb1 * b3: %s",
+                + "\n\nb1 * b3: %s"
+                + "\nb1 == b2: %s"
+                + "\nb1 == b1: %s\n",
                 test_3x3,
                 test_7x7,
                 test_3x4,
-                triangle_test,
-                MatrixMath.getTriagleArea(triangle_test),
+                triangle_test2d,
+                MatrixMath.getTriagleArea2d(triangle_test2d),
+                triangle_test3d,
+                MatrixMath.getTriagleArea3d(triangle_test3d),
                 MatrixMath.scalarMultiply(test_7x7, 3),
                 MatrixMath.add(test_3x3, test_3x3),
                 MatrixMath.subtract(test_3x3, MatrixMath.scalarMultiply(test_3x3, 2)),
-                MatrixMath.multiply(test_3x3, test_3x4)
+                MatrixMath.multiply(test_3x3, test_3x4),
+                test_3x3.equals(test_7x7),
+                test_3x3.equals(test_3x3)
                 );
     }
 }

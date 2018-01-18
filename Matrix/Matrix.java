@@ -98,6 +98,25 @@ public class Matrix
     }
     
     /**
+     * Checks if two matrix are equal to each other
+     * @param mat the matrix to compare to
+     * @return true if they are equal and false if not
+     */
+    public boolean equals (Matrix mat)
+    {
+        if (mat.getRows() != getRows() || mat.getColumns() != getColumns())
+            return false;
+        
+        boolean status = true;
+        for (int i = 0; i != getRows() && status; i++)
+            for (int j = 0; j != getColumns() && status; j++)
+                if (mat.getElement(i, j) != getElement(i, j))
+                    status = false;
+        
+        return status;
+    }
+    
+    /**
      * Get the determinant of a 2d array subMat
      * @param subMat the 2d array to recursively find the determinant of
      * @return the determinant of subMat

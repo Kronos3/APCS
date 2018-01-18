@@ -90,16 +90,37 @@ public class MatrixMath
     
     /**
      * Get the area of a triangle using Bramagupta's formula
-     * @param mat triangle represented given a 2x3 Matrix of 3 points
+     * @param mat triangle represented given a 2x3 Matrix of 3 points on a 2d plane
      * @return the area of a triangle
      */
-    public static double getTriagleArea (Matrix mat)
+    public static double getTriagleArea2d (Matrix mat)
     {
         BiFunction<int[], int[], Double> distance = (p1, p2) -> {
             return Math.sqrt(Math.pow (p2[0] - p1[0], 2) + Math.pow (p2[1] - p1[1], 2));
         };
         
         if (mat.getColumns() != 2 && mat.getRows() != 3)
+            return 0;
+        
+        double a = distance.apply(mat.getRow(0), mat.getRow(1));
+        double b = distance.apply(mat.getRow(1), mat.getRow(2));
+        double c = distance.apply(mat.getRow(0), mat.getRow(2));
+        double s = 0.5 * (a + b + c);
+        
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
+    }
+    /**
+     * Get the area of a triangle using Bramagupta's formula in 3d dimensions
+     * @param mat triangle represented given a 3x3 Matrix of 3 points
+     * @return the area of a triangle
+     */
+    public static double getTriagleArea3d (Matrix mat)
+    {
+        BiFunction<int[], int[], Double> distance = (p1, p2) -> {
+            return Math.sqrt(Math.pow (p2[0] - p1[0], 2) + Math.pow (p2[1] - p1[1], 2) + Math.pow (p2[2] - p1[2], 2));
+        };
+        
+        if (mat.getColumns() != 3 && mat.getRows() != 3)
             return 0;
         
         double a = distance.apply(mat.getRow(0), mat.getRow(1));
