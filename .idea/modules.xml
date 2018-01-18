@@ -5,6 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/Elevens_Activity10/Elevens_Activity10.iml" filepath="$PROJECT_DIR$/Elevens_Activity10/Elevens_Activity10.iml" />
       <module fileurl="file://$PROJECT_DIR$/Elevens_Activity11/Elevens_Activity11.iml" filepath="$PROJECT_DIR$/Elevens_Activity11/Elevens_Activity11.iml" />
       <module fileurl="file://$PROJECT_DIR$/Mail/Mail.iml" filepath="$PROJECT_DIR$/Mail/Mail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Matrix/Matrix.iml" filepath="$PROJECT_DIR$/Matrix/Matrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$//Permuations.iml" filepath="$PROJECT_DIR$//Permuations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Elevens_Activity11/Permutations_1_10.iml" filepath="$PROJECT_DIR$/Elevens_Activity11/Permutations_1_10.iml" />
     </modules>
   </component>
 </project>
