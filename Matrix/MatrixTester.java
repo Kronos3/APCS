@@ -2,6 +2,16 @@ public class MatrixTester
 {
     public static void main (String[] args)
     {
+        int[][] __math_thing = {
+                {1, 1, 0},
+                {1, 3, 5},
+                {1, -2, 2}
+        };
+
+        Matrix j = new Matrix (__math_thing);
+        System.out.println(j);
+        System.out.println(MatrixMath.getTriangleArea3d(j));
+
         int[][] b1 = {
                 {6, 1, 1},
                 {4, -2, 5},
