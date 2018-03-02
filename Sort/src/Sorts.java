@@ -63,7 +63,10 @@ public class Sorts {
         System.out.println();
         
         selectionSort();
-        System.out.println("values is sorted: " + isSorted());
+        System.out.println("values is sorted (selection): " + isSorted());
+    
+        insertSort();
+        System.out.println("values is sorted (insertion): " + isSorted());
     }
     
     /**
@@ -80,12 +83,44 @@ public class Sorts {
         return small;
     }
     
+    /**
+     * Use selection sorting algortithm to sort values
+     */
     public static void selectionSort () {
         int current = 0;
         while (current < values.length) {
             int min_i = minIndex(current, values.length - 1);
             swap (current, min_i);
             current++;
+        }
+    }
+    
+    /**
+     * Use insertion sorting algortithm to sort values
+     */
+    public static void insertSort () {
+        for (int count = 1; count < values.length; count++)
+            insertItem(0, count);
+    }
+    
+    /**
+     * Insert item at endIndex into correct place between startIndex and endIndex
+     * @param startIndex the left bound of the array
+     * @param endIndex the item to sort
+     */
+    public static void insertItem (int startIndex, int endIndex) {
+        boolean finished = false;
+        boolean moreToSearch = true;
+        int current = endIndex;
+        
+        while (moreToSearch && !finished) {
+            if (values[current] < values[current - 1]) {
+                swap (current, current - 1);
+                current--;
+                moreToSearch = current >= startIndex;
+            }
+            else
+                finished = true;
         }
     }
 }
