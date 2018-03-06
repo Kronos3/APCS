@@ -1,7 +1,7 @@
 import java.text.DecimalFormat;
 import java.util.Random;
 
-public class BubbleSort {
+public class FractionBubbleTumbar {
     private static Fraction[] values;
     private static int SIZE = 30;
     
