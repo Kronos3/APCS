@@ -1,16 +1,17 @@
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class FractionBubbleTumbar {
-    private static Fraction[] values;
+    private static ArrayList<Fraction> values;
     private static int SIZE = 30;
     
     public static boolean isSorted()
     // Determine whether the array values are sorted
     {
         boolean sorted = true;
-        for (int i = 0; i < values.length - 1; i++)
-            if (values[i].compareTo(values[i + 1]) > 0)
+        for (int i = 0; i < values.size() - 1; i++)
+            if (values.get(i).compareTo(values.get(i + 1)) > 0)
                 sorted = false;
         return sorted;
     }
@@ -18,22 +19,22 @@ public class FractionBubbleTumbar {
     private static void initValues()
     // Initializes the values array with random integers from 0 to 99
     {
-        values = new Fraction[SIZE];
+        values = new ArrayList<Fraction>();
         Random rand = new Random(560);
         System.out.println(rand);
         for (int index = 0; index < SIZE; index++)
-            values[index] = new Fraction (
+            values.add (new Fraction (
                     Math.abs(rand.nextInt()) % 100,
-                    Math.abs(rand.nextInt()) % 100);
+                    Math.abs(rand.nextInt()) % 100));
     }
     
     public static void swap(int index1, int index2)
     // Swaps the integers at locations index1 and index2 of array values
     // Precondition:  index1 and index2 are less than size
     {
-        Fraction temp = values[index1];
-        values[index1] = values[index2];
-        values[index2] = temp;
+        Fraction temp = values.get(index1);
+        values.set(index1, values.get(index2));
+        values.set(index2, temp);
     }
     
     public static void printValues()
@@ -42,8 +43,8 @@ public class FractionBubbleTumbar {
         Fraction value;
         DecimalFormat fmt = new DecimalFormat("00");
         System.out.println("the values array is:");
-        for (int index = 0; index < SIZE; index++) {
-            value = values[index];
+        for (int index = 0; index < values.size(); index++) {
+            value = values.get(index);
             if (((index + 1) % 10) == 0)
                 System.out.println(value);
             else
@@ -53,13 +54,13 @@ public class FractionBubbleTumbar {
     }
     
     public static void bubbleSort () {
-        for (int i = 0; i < values.length - 1; i++)
+        for (int i = 0; i < values.size() - 1; i++)
             bubbleUp(0, i);
     }
     
     public static void bubbleUp (int startIndex, int endIndex) {
         for (int i = endIndex; i >= startIndex + 1; i--) {
-            if (values[i].compareTo(values[i - 1]) < 0)
+            if (values.get(i).compareTo(values.get(i - 1)) < 0)
                 swap (i, i - 1);
         }
     }

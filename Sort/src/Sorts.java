@@ -3,7 +3,7 @@ import java.util.*;
 import java.text.DecimalFormat;
 
 public class Sorts {
-    public static final int SIZE = 50;          // Size of array to be sorted
+    public static final int SIZE = 7;          // Size of array to be sorted
     private static int[] values = new int[SIZE];  // Values to be sorted
     
     private static void initValues()
@@ -38,7 +38,6 @@ public class Sorts {
     {
         int value;
         DecimalFormat fmt = new DecimalFormat("00");
-        System.out.println("the values array is:");
         for (int index = 0; index < SIZE; index++) {
             value = values[index];
             if (((index + 1) % 10) == 0)
@@ -49,24 +48,89 @@ public class Sorts {
         System.out.println();
     }
     
+    public static void merge (int l_first, int l_last, int r_first, int r_last) {
+        int[] temp = new int [values.length];
+        int save = l_first;
+    
+        int i;
+        for (i = l_first; l_first <= l_last
+                && r_first <= r_last; i++) {
+            if (values[l_first] < values[r_first]) {
+                temp[i] = values[l_first];
+                l_first++;
+            }
+            else {
+                temp[i] = values[r_first];
+                r_first++;
+            }
+        }
+        
+        for (int k = l_first; k <= l_last; i++, k++)
+            temp[i] = values[k];
+        for (int k = r_first; k <= r_last; i++, k++)
+            temp[k] = values[i];
+        for (i = save; i <= r_last; i++)
+            values[i] =  temp[i];
+    }
+    
+    public static void mergeSort (int start, int end) {
+        if (start >= end)
+            return;
+        
+        int middle = (start + end) / 2;
+        
+        mergeSort(start, middle);
+        mergeSort(middle + 1, end);
+        merge (start, middle, middle + 1, end);
+    }
+    
+    public static int split (int low, int high) {
+        int small_index = low - 1;
+        int pivot = values[high];
+        
+        for (int j = low; j < high; j++) {
+            if (values[j] <= pivot) {
+                small_index++;
+                swap (j, small_index);
+            }
+        }
+        
+        swap (small_index + 1, high);
+        return (small_index + 1);
+    }
+    
+    public static void quickSort (int low, int high) {
+        if (low < high) {
+            int pivot = split (low, high);
+            
+            quickSort(low, pivot - 1);
+            quickSort(pivot + 1, high);
+        }
+    }
+    
     public static void main(String[] args) throws IOException
     // Tests the other methods of the Sorts class
     {
         initValues();
         printValues();
-        System.out.println("values is sorted: " + isSorted());
-        System.out.println();
-        
-        swap(0, 1);
-        printValues();
-        System.out.println("values is sorted: " + isSorted());
-        System.out.println();
         
         selectionSort();
         System.out.println("values is sorted (selection): " + isSorted());
-    
+        
+        initValues();
         insertSort();
         System.out.println("values is sorted (insertion): " + isSorted());
+    
+    
+        initValues();
+        mergeSort(0, SIZE - 1);
+        System.out.println("values is sorted (merge): " + isSorted());
+        
+        initValues();
+        printValues();
+        quickSort(0, SIZE - 1);
+        System.out.println("values is sorted (quick): " + isSorted());
+        printValues();
     }
     
     /**
@@ -113,7 +177,8 @@ public class Sorts {
         boolean moreToSearch = true;
         int current = endIndex;
         
-        while (moreToSearch && !finished) {
+        while (moreToSearch && !finished
+                && current >= startIndex + 1) {
             if (values[current] < values[current - 1]) {
                 swap (current, current - 1);
                 current--;
