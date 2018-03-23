@@ -41,10 +41,6 @@ public class Pancake extends SortAlgorithm
 	private void flip(int end)
 	{
 		for(int i = 0, j = end; i <= end / 2; i++, j--)
-		{
-			int temp = values[i];
-			values[i] = values[j];
-			values[j] = temp;
-		}
+			swap (i, j);
 	}
 }

@@ -80,7 +80,7 @@ abstract class SortAlgorithm {
 }
 
 public class SortTester {
-	private static int[] array_size = {250, 1000, 5000, 10000, 100000};
+	private static int[] array_size = {250, 1000, 2000, 3000, 4000, 5000};
 	private static int TRIAL_NUMBER = 30;
 	
 	public static void main (String[] args) {
