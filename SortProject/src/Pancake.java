@@ -24,15 +24,10 @@ public class Pancake extends SortAlgorithm
 	{
 		int max = 0;
 		for(int i = 0; i <= end; i++)
-		{
 			if(values[i] > values[max])
-			{
 				max = i;
-			}
-		}
 		return max;
 	}
-	
 	
 	/**
 	 * Flip the array from the 0 to end

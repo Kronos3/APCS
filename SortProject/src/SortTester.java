@@ -95,7 +95,7 @@ public class SortTester {
 			for (int size : array_size) {
 				System.out.println(size);
 				for (int i = 0; i < TRIAL_NUMBER; i++) {
-					al.set(generate(size));
+					al.set(generate(0, 100, size));
 					long timeTaken = al.sort();
 					System.out.printf("%d,%d\n", i + 1, timeTaken);
 				}
@@ -104,10 +104,13 @@ public class SortTester {
 		}
 	}
 	
-	private static int[] generate (int size) {
-		return generate(size, 0, 100);
-	}
-	
+	/**
+	 * Generate a random array of size
+	 * @param size size of the array
+	 * @param min minimum number in the array
+	 * @param max maximum number in the array
+	 * @return an array of size with random numbers from min to max
+	 */
 	private static int[] generate (int size, int min, int max) {
 		int[] out = new int[size];
 		
